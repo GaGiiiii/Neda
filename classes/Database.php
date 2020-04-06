@@ -29,20 +29,5 @@
 
             return self::$instance;
         }
-
-
-        public function registruj($korisnik){
-            $query = "INSERT INTO Korisnik (ime, prezime, nadimak, email, sifra) VALUES(:ime, :prezime, :nadimak, :email, :sifra)";
-            $statement = $this->conn->prepare($query);
-            
-            return $statement->execute(
-                [
-                    'ime' => $korisnik->ime,
-                    'prezime' => $korisnik->prezime,
-                    'nadimak' => $korisnik->nadimak,
-                    'email' => $korisnik->email,
-                    'sifra' => $korisnik->sifra,
-                ]
-            );
-        }
+        
     }

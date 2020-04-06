@@ -27,6 +27,18 @@
         $sifra = $_POST['sifra'];
         $sifra2 = $_POST['sifra2'];
 
+        if(empty($ime)){
+          $poruka['ime'] = '<p><label class="text-danger">Molimo Vas unesite ime.</label></p>';
+        }
+
+        if(empty($prezime)){
+          $poruka['prezime'] = '<p><label class="text-danger">Molimo Vas unesite prezime.</label></p>';
+        }
+
+        if(empty($nadimak)){
+          $poruka['nadimak'] = '<p><label class="text-danger">Molimo Vas unesite nadimak.</label></p>';
+        }
+
         if(empty($email)){
             $poruka['email'] = '<p><label class="text-danger">Molimo Vas unesite email.</label></p>';
         }else{
@@ -34,6 +46,14 @@
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 $poruka['email'] = '<p><label class="text-danger">Pogrešan Email Format</label></p>';
             }
+        }
+
+        if(empty($sifra)){
+          $poruka['sifra'] = '<p><label class="text-danger">Molimo Vas unesite šifru.</label></p>';
+        }else{
+          if($sifra !== $sifra2){
+            $poruka['sifra2'] = '<p><label class="text-danger">Šifre se ne poklapaju.</label></p>';
+          }
         }
 
         
@@ -102,24 +122,28 @@
             <fieldset>
                 <legend>Prijavi se</legend>
                 <div class="form-group">
+                    <input type="text" name="ime" class="form-control" id="exampleInputPassword1" value="<?php if(isset($ime)) echo $ime; ?>" placeholder="Unesite ime">
                     <?php if(array_key_exists('ime', $poruka)) echo $poruka['ime']; ?>
-                    <input type="text" name="ime" class="form-control" id="exampleInputPassword1" placeholder="Unesite ime">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="prezime" class="form-control" id="exampleInputPassword1" placeholder="Unesite prezime">
+                    <input type="text" name="prezime" class="form-control" id="exampleInputPassword1" value="<?php if(isset($prezime)) echo $prezime; ?>" placeholder="Unesite prezime">
+                    <?php if(array_key_exists('prezime', $poruka)) echo $poruka['prezime']; ?>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="nadimak" class="form-control" id="exampleInputPassword1" placeholder="Unesite nadimak">
+                    <input type="text" name="nadimak" class="form-control" id="exampleInputPassword1" value="<?php if(isset($nadimak)) echo $nadimak; ?>" placeholder="Unesite nadimak">
+                    <?php if(array_key_exists('nadimak', $poruka)) echo $poruka['nadimak']; ?>
                 </div>
                 <div class="form-group">
-                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesite email">
+                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php if(isset($email)) echo $email; ?>" placeholder="Unesite email">
                     <?php if(array_key_exists('email', $poruka)) echo $poruka['email']; ?>
                 </div>
                 <div class="form-group">
                     <input type="password" name="sifra" class="form-control" id="exampleInputPassword1" placeholder="Unesite šifru">
+                    <?php if(array_key_exists('sifra', $poruka)) echo $poruka['sifra']; ?>
                 </div>
                 <div class="form-group">
                     <input type="password" name="sifra2" class="form-control" id="exampleInputPassword2" placeholder="Potvrdite šifru">
+                    <?php if(array_key_exists('sifra2', $poruka)) echo $poruka['sifra2']; ?>
                 </div>
                 <button type="submit" name="registracija" class="btn btn-primary">Prijava</button>
             </fieldset>
