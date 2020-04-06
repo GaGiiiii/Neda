@@ -8,23 +8,18 @@
         private $password = "";
 
         private static $instance = null;
-        public $conn = null;
+        public $connection = null;
     
-        public function __construct(){
-            $this->conn = null;
-    
+        public function __construct(){    
             try{
-                echo "DSADAS";
                 $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             }catch(PDOException $e){
                 die($e->getMessage());
             }
-    
-            return $this->conn;
         }
 
         public function getConnection(){
-            return $this->$conn;
+            return $this->$connection;
         }
         
         public static function getInstance(){

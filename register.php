@@ -1,11 +1,7 @@
 <?php 
 
-
-    require_once 'classes/Database.php';
     require_once 'classes/Korisnik.php';
     
-    $db = new Database();
-
     $poruka = array();
     $ime = '';
     $prezime = '';
@@ -44,7 +40,7 @@
         if(count($poruka) == 0){
             $korisnik = new Korisnik($ime, $prezime, $nadimak, $email, $sifra);
             
-            if($db->registruj($korisnik)){
+            if($korisnik->registruj()){
                 echo "Uspesno registrovan.";
             }else{
                 echo "Nije uspela registracija.";
