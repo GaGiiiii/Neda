@@ -12,14 +12,14 @@
     
         public function __construct(){    
             try{
-                $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+                $this->connection = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
             }catch(PDOException $e){
                 die($e->getMessage());
             }
         }
 
         public function getConnection(){
-            return $this->$connection;
+            return $this->connection;
         }
         
         public static function getInstance(){
