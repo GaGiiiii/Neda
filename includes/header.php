@@ -1,6 +1,12 @@
 
 <?php require_once "classes/Korisnik.php"; ?>
-<?php session_start(); ?>
+<?php 
+
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+  }
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +16,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Neda</title>
   <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css">
+  <script src="https://kit.fontawesome.com/5c5689b7a2.js"></script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
