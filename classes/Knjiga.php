@@ -59,4 +59,28 @@
             return $result;
         }
 
+        public static function azuriraj($knjigaID, $props){
+            $naslov = $props['naslov'];
+            $autor = $props['autor'];
+            $opis = $props['opis'];
+            $cena = $props['cena'];
+            $prodavnica = $props['link'];
+            $query = "UPDATE Knjiga SET naslov = '$naslov', autor = '$autor', opis = '$opis', cena = $cena, prodavnica = '$prodavnica' WHERE id = $knjigaID";
+            $result = mysqli_query(Database::getInstance()->getConnection(), $query);
+
+            return $result;
+        }
+
+        public static function pripadaKorisniku($knjigaID, $korisnikID){
+            $query = "SELECT korisnik_id FROM Knjiga WHERE id = $knjigaID";
+            $result = mysqli_query(Database::getInstance()->getConnection(), $query);
+            $red = mysqli_fetch_array($result);      
+
+            if($red['korisnik_id'] == $korisnikID){
+                return true;
+            }
+
+            return false;
+        }
+
     }

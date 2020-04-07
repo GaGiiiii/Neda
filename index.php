@@ -11,6 +11,13 @@
     $cena = '';
     $link = '';
 
+    $poruka2 = array();
+    $naslov2 = '';
+    $opis2 = '';
+    $autor2 = '';
+    $cena2 = '';
+    $link2 = '';
+
     function ocisti($input){
         $input = trim($input);
         $input = stripslashes($input); // removes / from sting
@@ -63,6 +70,50 @@
         Knjiga::izbrisi($_POST['knjigaID']);
     }
 
+    if(isset($_POST['knjiga2'])){
+        $naslov2 = $_POST['naslov2'];
+        $autor2 = $_POST['autor2'];
+        $opis2 = $_POST['opis2'];
+        $cena2 = $_POST['cena2'];
+        $link2 = $_POST['link2'];
+
+        if(empty($naslov2)){
+            $poruka2['naslov2'] = '<p><label class="text-danger">Molimo Vas unesite naslov.</label></p>';
+        }
+
+        if(empty($autor2)){
+            $poruka2['autor2'] = '<p><label class="text-danger">Molimo Vas unesite autora.</label></p>';
+        }
+
+        if(empty($opis2)){
+            $poruka2['opis2'] = '<p><label class="text-danger">Molimo Vas unesite opis.</label></p>';
+        }
+
+        if(empty($cena2)){
+            $poruka2['cena2'] = '<p><label class="text-danger">Molimo Vas unesite cenu.</label></p>';
+        }
+
+        if(empty($link2)){
+            $poruka2['link2'] = '<p><label class="text-danger">Molimo Vas unesite link.</label></p>';
+        }
+
+
+        if(count($poruka2) == 0){
+            $props = [
+                'naslov' => $naslov2,
+                'autor' => $autor2,
+                'cena' => $cena2,
+                'opis' => $opis2,
+                'link' => $link2
+            ];
+
+            if(Knjiga::azuriraj($_POST['knjiga2ID'], $props)){
+                header("Location: index.php");
+            }else{
+                $poruka2['knjiga2'] = '<p><label class="text-danger">Greška prilikom azuriranja.</label></p>';
+            }
+        }
+    }
 
 
 ?>
@@ -94,11 +145,58 @@
                                 <li class="list-group-item"><a href="<?php echo $knjiga['prodavnica']; ?>" class="card-link">Link do prodavnice</a></li>
                             </ul>
                             <div class="card-body">
-                                <button class="btn btn-sm btn-warning"><a href="#" class="card-link">Ažuriraj</a></button>
-                                <form method="POST" style="display: inline-block;">
-                                <input type="hidden" name="knjigaID" value="<?php echo $knjiga['id']; ?>">
-                                    <button name="izbrisi" class="btn btn-sm btn-danger">Izbriši</a>
-                                </form>
+
+                                <?php if(isset($_SESSION['korisnik']) && Knjiga::pripadaKorisniku($knjiga['id'], $_SESSION['korisnik']['id'])) : ?> 
+
+                                    <a class="btn btn-warning btn-sm" role="button" data-toggle="collapse" href="#collapseEditForm<?php echo $knjiga['id']; ?>" aria-expanded="false" aria-controls="collapseEditForm">
+                                        <i class="fas fa-pencil-alt"></i> Ažuriraj
+                                    </a>
+                                    <form method="POST" style="display: inline-block;">
+                                        <input type="hidden" name="knjigaID" value="<?php echo $knjiga['id']; ?>">
+                                        <button name="izbrisi" class="btn btn-sm btn-danger">Izbriši</button>
+                                    </form>
+
+                                    <div class="<?php if(count($poruka2) == 0 || $knjiga['id'] != $_POST['knjiga2ID']) echo 'collapse'?>" id="collapseEditForm<?php echo $knjiga['id'] ?>" style="margin-top: 2rem; margin-bottom: 4rem;">
+                                        <div class="well">
+                                        <?php if(Korisnik::ulogovan()): ?>
+                                            <!--If the user is logged in, show the new comment form-->
+                                            <h4>Popunite podatke o knjizi <i class="fas fa-pencil-alt"></i></h4>
+                                            <?php if(array_key_exists('knjiga2', $poruka2)) echo $poruka2['knjiga2']; ?>
+                                            <form method="POST">
+                                                <input type="hidden" name="knjiga2ID" value="<?php echo $knjiga['id']; ?>">
+                                                <div class="form-group">
+                                                    <input class="form-control" type="text" disabled value="Korisnik: <?php echo $_SESSION['korisnik']['nadimak']; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control" name="naslov2" type="text" placeholder="Naslov" value="<?php echo $knjiga['naslov']; ?>">
+                                                    <?php if(array_key_exists('naslov2', $poruka2)) echo $poruka2['naslov2']; ?>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control" name="autor2" type="text" placeholder="Autor" value="<?php echo $knjiga['autor']; ?>">
+                                                    <?php if(array_key_exists('autor2', $poruka2)) echo $poruka2['autor2']; ?>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea class="form-control" name="opis2" placeholder="Opis..." rows="5" cols="70"><?php echo $knjiga['opis']; ?></textarea>
+                                                    <?php if(array_key_exists('opis2', $poruka2)) echo $poruka2['opis2']; ?>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control" name="cena2" type="number" placeholder="Cena u $" value="<?php echo $knjiga['cena']; ?>">
+                                                    <?php if(array_key_exists('cena2', $poruka2)) echo $poruka2['cena2']; ?>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input class="form-control" name="link2" type="text" placeholder="Link prodavnice" value="<?php echo $knjiga['prodavnica']; ?>">
+                                                    <?php if(array_key_exists('link2', $poruka2)) echo $poruka2['link2']; ?>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-success" name="knjiga2" style="width: 100%;">Ažuriraj <i class="far fa-comment"></i></button>
+                                                </div>
+                                            </form>
+                                        <?php endif; ?>
+                                        </div>
+                                    </div>
+
+                                <?php endif; ?>
+
                             </div>
                             <div class="card-footer text-muted">
                                 CENA: <?php echo $knjiga['cena']; ?>$
