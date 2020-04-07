@@ -11,11 +11,7 @@
         public $connection = null;
     
         public function __construct(){    
-            try{
-                $this->connection = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-            }catch(PDOException $e){
-                die($e->getMessage());
-            }
+            $this->connection = mysqli_connect($this->host, $this->username, $this->password, $this->db_name);
         }
 
         public function getConnection(){

@@ -22,20 +22,11 @@
         }
 
         public function registruj(){
-            $query = "INSERT INTO Korisnik (ime, prezime, nadimak, email, sifra) VALUES (:ime, :prezime, :nadimak, :email, :sifra)";
-            $statement = $this->connection->prepare($query);
+            $query = "INSERT INTO Korisnik (ime, prezime, nadimak, email, sifra) VALUES ('$this->ime', '$this->prezime', '$this->nadimak', '$this->email', '$this->sifra')";
+            $result = mysqli_query($this->connection, $query);
             
-            if($statement->execute(
-                [
-                    'ime' => $this->ime,
-                    'prezime' => $this->prezime,
-                    'nadimak' => $this->nadimak,
-                    'email' => $this->email,
-                    'sifra' => $this->sifra,
-                ]
-            )){
-                $this->id = $this->connection->lastInsertId();
-
+            if($result){
+                $this->id = mysqli_insert_id($this->connection);
                 $this->napraviSession();
 
                 return true;
@@ -45,14 +36,10 @@
         }
 
         public function prijavi($email, $sifra){
-            $query = "SELECT id, ime, prezime, nadimak, email FROM Korisnik WHERE email = :email AND sifra = :sifra";
-            $statement = $this->connection->prepare($query);
-            $statement->execute([
-                'email' => $email,
-                'sifra' => $sifra
-            ]);
+            $query = "SELECT id, ime, prezime, nadimak, email FROM Korisnik WHERE email = '$email' AND sifra = '$sifra'";
+            $result = mysqli_query($this->connection, $query);
 
-            $korisnik = $statement->fetch($this->connection::FETCH_ASSOC); 
+            $korisnik = mysqli_fetch_array($result);
 
             if($korisnik){
                 $this->id = $korisnik['id'];
