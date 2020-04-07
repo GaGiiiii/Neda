@@ -19,8 +19,6 @@
             $this->email = $email;
             $this->sifra = $sifra;
             $this->connection = Database::getInstance()->getConnection();
-            $instance = Database::getInstance();
-            $this->connection = $instance->getConnection();
         }
 
         public function registruj(){
