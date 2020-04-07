@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 06, 2020 at 02:48 PM
+-- Generation Time: Apr 07, 2020 at 12:13 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -57,8 +57,8 @@ CREATE TABLE `Korisnik` (
 --
 
 INSERT INTO `Korisnik` (`id`, `ime`, `prezime`, `nadimak`, `email`, `sifra`) VALUES
-(5, 'dsadsa', 'dsadsa', 'dasdsa', 'dsada@dsadsa.com', 'dsadsa'),
-(6, 'a', 'b', 'c', 'd@d.com', 'g');
+(13, 'a', 'a', 'a@a.com', 'a@a.com', 'a'),
+(14, 'Neda', 'Vukovic', 'Neda Haker', 'neda@neda.com', 'neda');
 
 --
 -- Indexes for dumped tables
@@ -90,7 +90,7 @@ ALTER TABLE `Knjiga`
 -- AUTO_INCREMENT for table `Korisnik`
 --
 ALTER TABLE `Korisnik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
