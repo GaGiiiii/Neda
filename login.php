@@ -8,6 +8,7 @@
   $sifra = '';
 
   function ocisti($input){
+      $input = mysqli_real_escape_string(Database::getInstance()->getConnection(), $input);
       $input = trim($input);
       $input = stripslashes($input); // removes / from sting
       $input = htmlspecialchars($input);
@@ -31,6 +32,8 @@
 
       if(empty($sifra)){
         $poruka['sifra'] = '<p><label class="text-danger">Molimo Vas unesite šifru.</label></p>';
+      }else{
+        $sifra = ocisti($sifra);
       }
 
       if(count($poruka) == 0){

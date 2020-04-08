@@ -11,6 +11,7 @@
     $sifra2 = '';
 
     function ocisti($input){
+        $input = mysqli_real_escape_string(Database::getInstance()->getConnection(), $input);
         $input = trim($input);
         $input = stripslashes($input); // removes / from sting
         $input = htmlspecialchars($input);
@@ -29,14 +30,20 @@
 
         if(empty($ime)){
           $poruka['ime'] = '<p><label class="text-danger">Molimo Vas unesite ime.</label></p>';
+        }else{
+            $ime = ocisti($ime);
         }
 
         if(empty($prezime)){
           $poruka['prezime'] = '<p><label class="text-danger">Molimo Vas unesite prezime.</label></p>';
+        }else{
+            $prezime = ocisti($prezime);
         }
 
         if(empty($nadimak)){
           $poruka['nadimak'] = '<p><label class="text-danger">Molimo Vas unesite nadimak.</label></p>';
+        }else{
+            $nadimak = ocisti($nadimak);
         }
 
         if(empty($email)){
@@ -51,6 +58,8 @@
         if(empty($sifra)){
           $poruka['sifra'] = '<p><label class="text-danger">Molimo Vas unesite šifru.</label></p>';
         }else{
+            $sifra = ocisti($sifra);
+            $sifra2 = ocisti($sifra2);
           if($sifra !== $sifra2){
             $poruka['sifra2'] = '<p><label class="text-danger">Šifre se ne poklapaju.</label></p>';
           }

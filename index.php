@@ -19,6 +19,7 @@
     $link2 = '';
 
     function ocisti($input){
+        $input = mysqli_real_escape_string(Database::getInstance()->getConnection(), $input);
         $input = trim($input);
         $input = stripslashes($input); // removes / from sting
         $input = htmlspecialchars($input);
@@ -36,22 +37,32 @@
 
         if(empty($naslov)){
             $poruka['naslov'] = '<p><label class="text-danger">Molimo Vas unesite naslov.</label></p>';
+        }else{
+            $naslov = ocisti($naslov);
         }
 
         if(empty($autor)){
             $poruka['autor'] = '<p><label class="text-danger">Molimo Vas unesite autora.</label></p>';
+        }else{
+            $autor = ocisti($autor);
         }
 
         if(empty($opis)){
             $poruka['opis'] = '<p><label class="text-danger">Molimo Vas unesite opis.</label></p>';
+        }else{
+            $opis = ocisti($opis);
         }
 
         if(empty($cena)){
             $poruka['cena'] = '<p><label class="text-danger">Molimo Vas unesite cenu.</label></p>';
+        }else{
+            $cena = ocisti($cena);
         }
 
         if(empty($link)){
             $poruka['link'] = '<p><label class="text-danger">Molimo Vas unesite link.</label></p>';
+        }else{
+            $link = ocisti($link);
         }
 
 
@@ -79,22 +90,32 @@
 
         if(empty($naslov2)){
             $poruka2['naslov2'] = '<p><label class="text-danger">Molimo Vas unesite naslov.</label></p>';
+        }else{
+            $naslov2 = ocisti($naslov2);
         }
 
         if(empty($autor2)){
             $poruka2['autor2'] = '<p><label class="text-danger">Molimo Vas unesite autora.</label></p>';
+        }else{
+            $autor2 = ocisti($autor2);
         }
 
         if(empty($opis2)){
             $poruka2['opis2'] = '<p><label class="text-danger">Molimo Vas unesite opis.</label></p>';
+        }else{
+            $opis2 = ocisti($opis2);
         }
 
         if(empty($cena2)){
             $poruka2['cena2'] = '<p><label class="text-danger">Molimo Vas unesite cenu.</label></p>';
+        }else{
+            $cena2 = ocisti($cena2);
         }
 
         if(empty($link2)){
             $poruka2['link2'] = '<p><label class="text-danger">Molimo Vas unesite link.</label></p>';
+        }else{
+            $link2 = ocisti($link2);
         }
 
 
@@ -124,6 +145,20 @@
 
     <div class="container">
         <div class="row">
+
+
+            <form method="POST">
+                <fieldset>
+                    <div class="form-group">
+                    <label for="exampleSelect1">Sortiraj po</label>
+                    <select class="form-control" id="exampleSelect1">
+                        <option>Cena</option>
+                        <option>Naziv</option>
+                    </select>
+                    </div>
+                    <button type="submit" value="sortiraj" class="btn btn-primary">Sortiraj</button>
+                </fieldset>
+            </form>
 
                 <?php 
                     $knjige = Knjiga::uzmiSve();
