@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 07, 2020 at 12:13 PM
+-- Generation Time: Apr 08, 2020 at 12:59 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.3
 
@@ -34,8 +34,20 @@ CREATE TABLE `Knjiga` (
   `autor` varchar(50) NOT NULL,
   `opis` text NOT NULL,
   `cena` int(11) NOT NULL,
-  `prodavnica` text NOT NULL
+  `prodavnica` text NOT NULL,
+  `korisnik_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Knjiga`
+--
+
+INSERT INTO `Knjiga` (`id`, `naslov`, `autor`, `opis`, `cena`, `prodavnica`, `korisnik_id`) VALUES
+(1, 'Neda2', 'Autorka', 'Opisujem opisom', 2, 'dsada', 14),
+(3, 'Neda', 'Nedic', 'nedam', 420, 'nema', 14),
+(4, '3', '3', '3', 65, 's', 14),
+(5, 'be', 'baa', 'bu', 55, 'gagag', 14),
+(6, 'hi', 'ho', 'he', 99, 'hooo', 14);
 
 -- --------------------------------------------------------
 
@@ -57,8 +69,8 @@ CREATE TABLE `Korisnik` (
 --
 
 INSERT INTO `Korisnik` (`id`, `ime`, `prezime`, `nadimak`, `email`, `sifra`) VALUES
-(13, 'a', 'a', 'a@a.com', 'a@a.com', 'a'),
-(14, 'Neda', 'Vukovic', 'Neda Haker', 'neda@neda.com', 'neda');
+(14, 'Neda', 'Vukovic', 'Neda Haker', 'neda@neda.com', 'neda'),
+(19, 'Pera', 'Peric', 'ropefs17', 'rope@rope.com', 'rope');
 
 --
 -- Indexes for dumped tables
@@ -84,13 +96,13 @@ ALTER TABLE `Korisnik`
 -- AUTO_INCREMENT for table `Knjiga`
 --
 ALTER TABLE `Knjiga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `Korisnik`
 --
 ALTER TABLE `Korisnik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

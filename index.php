@@ -146,19 +146,20 @@
     <div class="container">
         <div class="row">
 
-
-            <form method="POST">
-                <fieldset>
-                    <div class="form-group">
-                    <label for="exampleSelect1">Sortiraj po</label>
-                    <select class="form-control" id="exampleSelect1">
-                        <option>Cena</option>
-                        <option>Naziv</option>
-                    </select>
-                    </div>
-                    <button type="submit" value="sortiraj" class="btn btn-primary">Sortiraj</button>
-                </fieldset>
-            </form>
+            <div class="col-md-12">
+                <form method="POST">
+                    <fieldset>
+                        <div class="form-group">
+                        <label for="exampleSelect1">Sortiraj po</label>
+                        <select class="form-control" id="exampleSelect1">
+                            <option>Cena</option>
+                            <option>Naziv</option>
+                        </select>
+                        </div>
+                        <button type="submit" value="sortiraj" class="btn btn-primary">Sortiraj</button>
+                    </fieldset>
+                </form>
+            </div>
 
                 <?php 
                     $knjige = Knjiga::uzmiSve();
