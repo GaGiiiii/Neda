@@ -83,4 +83,20 @@
             return false;
         }
 
+        public static function sortirajPoCeni(){
+            $query = "SELECT * FROM Knjiga ORDER BY cena";
+            $result = mysqli_query(Database::getInstance()->getConnection(), $query);
+            $knjige = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            
+            return $knjige;
+        }
+
+        public static function sortirajPoNazivu(){
+            $query = "SELECT * FROM Knjiga ORDER BY naziv";
+            $result = mysqli_query(Database::getInstance()->getConnection(), $query);
+            $knjige = mysqli_fetch_all($result, MYSQLI_ASSOC);
+            
+            return $knjige;
+        }
+
     }

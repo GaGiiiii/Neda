@@ -3,7 +3,7 @@
 
     require_once 'classes/Knjiga.php';
     session_start();
-        
+
     $poruka = array();
     $naslov = '';
     $opis = '';
@@ -144,16 +144,16 @@
 <?php require_once 'includes/header.php'; ?>
 
     <div class="container">
-        <div class="row">
+        <div class="row" id="knjige-row-container">
 
-            <div class="col-md-12">
-                <form method="POST">
+            <div class="col-md-12" style="padding: 0;">
+                <form method="POST" id="sortiraj-forma">
                     <fieldset>
                         <div class="form-group">
-                        <label for="exampleSelect1">Sortiraj po</label>
-                        <select class="form-control" id="exampleSelect1">
-                            <option>Cena</option>
-                            <option>Naziv</option>
+                        <label for="sortiraj-select">Sortiraj po</label>
+                        <select class="form-control" id="sortiraj-select">
+                            <option value="cena">Cena</option>
+                            <option value="naziv">Naziv</option>
                         </select>
                         </div>
                         <button type="submit" value="sortiraj" class="btn btn-primary">Sortiraj</button>
@@ -161,6 +161,8 @@
                 </form>
             </div>
 
+            <div id="knjige-container" class="row">
+            
                 <?php 
                     $knjige = Knjiga::uzmiSve();
 
@@ -242,6 +244,8 @@
 
                     <?php }
                 ?>
+
+            </div>
         </div>
     </div>
 
