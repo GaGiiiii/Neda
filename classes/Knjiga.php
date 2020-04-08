@@ -92,7 +92,7 @@
         }
 
         public static function sortirajPoNazivu(){
-            $query = "SELECT * FROM Knjiga ORDER BY naziv";
+            $query = "SELECT * FROM Knjiga ORDER BY naslov";
             $result = mysqli_query(Database::getInstance()->getConnection(), $query);
             $knjige = mysqli_fetch_all($result, MYSQLI_ASSOC);
             

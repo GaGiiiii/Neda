@@ -196,7 +196,6 @@
 
                                     <div class="<?php if(count($poruka2) == 0 || $knjiga['id'] != $_POST['knjiga2ID']) echo 'collapse'?>" id="collapseEditForm<?php echo $knjiga['id'] ?>" style="margin-top: 2rem; margin-bottom: 4rem;">
                                         <div class="well">
-                                        <?php if(Korisnik::ulogovan()): ?>
                                             <!--If the user is logged in, show the new comment form-->
                                             <h4>Popunite podatke o knjizi <i class="fas fa-pencil-alt"></i></h4>
                                             <?php if(array_key_exists('knjiga2', $poruka2)) echo $poruka2['knjiga2']; ?>
@@ -229,7 +228,6 @@
                                                     <button type="submit" class="btn btn-success" name="knjiga2" style="width: 100%;">Ažuriraj <i class="far fa-comment"></i></button>
                                                 </div>
                                             </form>
-                                        <?php endif; ?>
                                         </div>
                                     </div>
 
@@ -265,7 +263,7 @@
                     <div class="well">
                     <?php if(!Korisnik::ulogovan()) : ?>
                         <!--If the user is not logged in, direct him to the login page-->
-                        <h5 style="text-align: center;">Morate biti prijavljeni pre dodavanja nove knjige. <a href="login.php">Kliknite ovde</a> da se prijavite.</h5>
+                        <h5 style="text-align: center;">Morate biti prijavljeni pre dodavanja nove knjige. <a href="login.php" style="text-decoration: underline;">Kliknite ovde</a> da se prijavite.</h5>
                     <?php endif; ?>
                     <?php if(Korisnik::ulogovan()): ?>
                         <!--If the user is logged in, show the new comment form-->
@@ -306,34 +304,6 @@
             </div>
         </div>
     </div>
-
-
-<script>
-
-    const form = document.getElementById('sortiraj-forma');
-    const select = document.getElementById('sortiraj-select');
-
-
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        let izbor = select.options[select.selectedIndex].value;
-
-        $.ajax({
-            url: 'sortiraj.php',
-            type: 'POST',
-            data: {
-                vrstaSorta: izbor
-            },
-            success: (response) => {
-                console.log(response)
-                document.getElementById('knjige-row-container').innerHTML = response;
-            }
-        });
-    });
-    
-</script>
-   
 
 
 <?php require_once 'includes/footer.php'; ?>
