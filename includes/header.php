@@ -49,9 +49,9 @@
         </li>
     <?php } ?>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Traži">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Traži</button>
+    <form class="form-inline my-2 my-lg-0" id="trazi-form" method="POST">
+      <input class="form-control mr-sm-2" id="trazi-input" name="trazi-text" type="text" placeholder="Traži naslov">
+      <button class="btn btn-secondary my-2 my-sm-0" name="trazi" type="submit">Traži</button>
     </form>
   </div>
 </nav>

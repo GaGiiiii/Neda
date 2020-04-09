@@ -99,4 +99,12 @@
             return $knjige;
         }
 
+        public static function trazi($tekst){
+            $query = "SELECT * FROM Knjiga WHERE naslov LIKE '%" . $tekst . "%'";
+            $result = mysqli_query(Database::getInstance()->getConnection(), $query);
+            $knjige = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+            return $knjige;
+        }
+
     }

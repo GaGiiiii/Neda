@@ -161,7 +161,7 @@
                 </form>
             </div>
 
-            <div id="knjige-container" class="row">
+            <div id="knjige-container" class="row" style="width: 100%;">
             
                 <?php 
                     $knjige = Knjiga::uzmiSve();
