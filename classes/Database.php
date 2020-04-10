@@ -10,7 +10,7 @@
         private static $instance = null;
         public $connection = null;
     
-        public function __construct(){    
+        private function __construct(){    
             $this->connection = mysqli_connect($this->host, $this->username, $this->password, $this->db_name);
         }
 

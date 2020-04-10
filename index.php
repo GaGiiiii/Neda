@@ -196,7 +196,6 @@
 
                                     <div class="<?php if(count($poruka2) == 0 || $knjiga['id'] != $_POST['knjiga2ID']) echo 'collapse'?>" id="collapseEditForm<?php echo $knjiga['id'] ?>" style="margin-top: 2rem; margin-bottom: 4rem;">
                                         <div class="well">
-                                            <!--If the user is logged in, show the new comment form-->
                                             <h4>Popunite podatke o knjizi <i class="fas fa-pencil-alt"></i></h4>
                                             <?php if(array_key_exists('knjiga2', $poruka2)) echo $poruka2['knjiga2']; ?>
                                             <form method="POST">
@@ -262,11 +261,9 @@
                 <div class="<?php if(count($poruka) == 0) echo 'collapse'?>" id="collapseForm" style="margin-top: 4rem; margin-bottom: 4rem;">
                     <div class="well">
                     <?php if(!Korisnik::ulogovan()) : ?>
-                        <!--If the user is not logged in, direct him to the login page-->
                         <h5 style="text-align: center;">Morate biti prijavljeni pre dodavanja nove knjige. <a href="login.php" style="text-decoration: underline;">Kliknite ovde</a> da se prijavite.</h5>
                     <?php endif; ?>
                     <?php if(Korisnik::ulogovan()): ?>
-                        <!--If the user is logged in, show the new comment form-->
                         <h4>Popunite podatke o knjizi <i class="fas fa-pencil-alt"></i></h4>
                         <?php if(array_key_exists('knjiga', $poruka)) echo $poruka['knjiga']; ?>
                         <form method="POST">

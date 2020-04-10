@@ -4,7 +4,6 @@
     session_start();
 
     if(isset($_POST['vrstaSorta'])){
-        $html = '';
         $html2 = '';
 
         if($_POST['vrstaSorta'] == 'cena'){
