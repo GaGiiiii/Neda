@@ -69,7 +69,7 @@
             $korisnik = new Korisnik($ime, $prezime, $nadimak, $email, $sifra);
             
             if($korisnik->registruj()){
-              print_r($_SESSION['korisnik']['ime']);
+              //print_r($_SESSION['korisnik']['ime']);
               header("Location: index.php");
             }else{
               $poruka['registracija'] = '<p><label class="text-danger">Greška prilikom registracije.</label></p>';

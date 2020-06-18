@@ -2,10 +2,10 @@
 -- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 09, 2020 at 01:01 PM
+-- Host: 127.0.0.1
+-- Generation Time: Jun 18, 2020 at 11:04 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,16 +19,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `NedaDB`
+-- Database: `nedadb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Knjiga`
+-- Table structure for table `knjiga`
 --
 
-CREATE TABLE `Knjiga` (
+CREATE TABLE `knjiga` (
   `id` int(11) NOT NULL,
   `naslov` varchar(50) NOT NULL,
   `autor` varchar(50) NOT NULL,
@@ -39,23 +39,22 @@ CREATE TABLE `Knjiga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Knjiga`
+-- Dumping data for table `knjiga`
 --
 
-INSERT INTO `Knjiga` (`id`, `naslov`, `autor`, `opis`, `cena`, `prodavnica`, `korisnik_id`) VALUES
-(1, 'Neda2', 'Autorka', 'Opisujem opisom', 2, 'dsada', 14),
+INSERT INTO `knjiga` (`id`, `naslov`, `autor`, `opis`, `cena`, `prodavnica`, `korisnik_id`) VALUES
+(1, 'Covek po imenu Uve', 'Neki kul lik', 'Opisujem opisom', 4, 'https://www.knjizara.com/pdf/149095.pdf', 14),
 (3, 'Neda', 'Nedic', 'nedam', 420, 'nema', 14),
 (4, '3', '3', '3', 65, 's', 14),
-(5, 'be', 'baa', 'bu', 55, 'gagag', 14),
-(6, 'hi', 'ho', 'he', 99, 'hooo', 14);
+(5, 'bedasdasda', 'baa', 'budasdsada', 55, 'gagag', 14);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Korisnik`
+-- Table structure for table `korisnik`
 --
 
-CREATE TABLE `Korisnik` (
+CREATE TABLE `korisnik` (
   `id` int(11) NOT NULL,
   `ime` varchar(30) NOT NULL,
   `prezime` varchar(30) NOT NULL,
@@ -65,27 +64,28 @@ CREATE TABLE `Korisnik` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `Korisnik`
+-- Dumping data for table `korisnik`
 --
 
-INSERT INTO `Korisnik` (`id`, `ime`, `prezime`, `nadimak`, `email`, `sifra`) VALUES
+INSERT INTO `korisnik` (`id`, `ime`, `prezime`, `nadimak`, `email`, `sifra`) VALUES
 (14, 'Neda', 'Vukovic', 'Neda Haker', 'neda@neda.com', 'neda'),
-(19, 'Pera', 'Peric', 'ropefs17', 'rope@rope.com', 'rope');
+(19, 'Pera', 'Peric', 'ropefs17', 'rope@rope.com', 'rope'),
+(20, 'gagi', 'gagi', 'gagi', 'gagi@gagi.com', 'gagi');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Knjiga`
+-- Indexes for table `knjiga`
 --
-ALTER TABLE `Knjiga`
+ALTER TABLE `knjiga`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `Korisnik`
+-- Indexes for table `korisnik`
 --
-ALTER TABLE `Korisnik`
+ALTER TABLE `korisnik`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -93,16 +93,16 @@ ALTER TABLE `Korisnik`
 --
 
 --
--- AUTO_INCREMENT for table `Knjiga`
+-- AUTO_INCREMENT for table `knjiga`
 --
-ALTER TABLE `Knjiga`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `knjiga`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `Korisnik`
+-- AUTO_INCREMENT for table `korisnik`
 --
-ALTER TABLE `Korisnik`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+ALTER TABLE `korisnik`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
